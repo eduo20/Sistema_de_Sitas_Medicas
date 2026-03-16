@@ -17,7 +17,7 @@ namespace Sistema_de_Sitas_Medicas
         List<Pacientes> pacientes2 = new List<Pacientes>();
         List<Registro> registro2 = new List<Registro>();
         List<horas> horas2 = new List<horas>();
-
+        List<Reporte> reporte2 = new List<Reporte>();
         public Form1()
         {
             InitializeComponent();
@@ -92,9 +92,9 @@ namespace Sistema_de_Sitas_Medicas
                     registro.Dpi_paciente = int.Parse(reader.ReadLine());
                     registro.Fecha_cita = DateTime.Parse(reader.ReadLine());
                     registro.Hora_cita = reader.ReadLine();
-                    registro2.Add(registro);                           
+                    registro2.Add(registro);
                 }
-                reader.Close(); 
+                reader.Close();
             }
         }
 
@@ -108,7 +108,7 @@ namespace Sistema_de_Sitas_Medicas
                 writer.WriteLine(registro.Id_medic);
                 writer.WriteLine(registro.Dpi_paciente);
                 writer.WriteLine(registro.Fecha_cita);
-                writer.WriteLine(registro.Hora_cita); 
+                writer.WriteLine(registro.Hora_cita);
             }
             writer.Close();
         }
@@ -149,7 +149,7 @@ namespace Sistema_de_Sitas_Medicas
             nuevaCita.Id_medic = medicoSeleccionado.Id;
             nuevaCita.Dpi_paciente = pacienteSeleccionado.Dpi;
             nuevaCita.Fecha_cita = dateTimePickerFecha.Value;
-            nuevaCita.Hora_cita = comboBoxHora.Text; 
+            nuevaCita.Hora_cita = comboBoxHora.Text;
 
             registro2.Add(nuevaCita);
             GuardarCitas();
@@ -172,6 +172,56 @@ namespace Sistema_de_Sitas_Medicas
 
             foreach (horas h in horas2)
                 comboBoxHora.Items.Add(h.Hora);
+        }
+
+        private void buttonReporte_Click(object sender, EventArgs e)
+        {
+            reporte2.Clear();
+
+            foreach (Registro r in registro2)
+            {
+                string nombreDoctor = "";
+
+                foreach (Medicos m in medicos2)
+                {
+                    if (m.Id == r.Id_medic)
+                    {
+                        nombreDoctor = m.Nomnbre_completo;
+
+                        break;
+                    }
+                }
+
+                string nombrePaciente = "";
+                foreach (Pacientes p in pacientes2)
+                {
+                    if (p.Dpi == r.Dpi_paciente)
+                    {
+                        nombrePaciente = p.Nombre_p;
+                        break;
+                    }
+                }
+
+                Reporte reporte = new Reporte();
+                reporte.Nombredoc = nombreDoctor;
+
+                reporte.Nombrepa = nombrePaciente;
+
+                reporte2.Add(reporte);
+            }
+
+            MostrarReporte();
+
+
+        }
+
+        private void MostrarReporte()
+        {
+
+            dataGridViewCitas.DataSource = null;
+            dataGridViewCitas.DataSource = reporte2;
+            dataGridViewCitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
         }
     }
 }

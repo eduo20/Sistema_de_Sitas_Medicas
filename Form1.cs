@@ -215,6 +215,7 @@ namespace Sistema_de_Sitas_Medicas
 
         }
 
+
         private void MostrarReporte()
         {
 
@@ -222,6 +223,24 @@ namespace Sistema_de_Sitas_Medicas
             dataGridViewCitas.DataSource = reporte2;
             dataGridViewCitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+        }
+
+        private void buttonOrdenar_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < reporte2.Count - 1; i++)
+            {
+                for (int j = 0; j < reporte2.Count - 1 - i; j++)
+                {
+                    if (string.Compare(reporte2[j].Nombredoc, reporte2[j + 1].Nombredoc) > 0)
+                    {
+                        Reporte temp = reporte2[j];
+                        reporte2[j] = reporte2[j + 1];
+                        reporte2[j + 1] = temp;
+                    }
+                }
+            }
+
+            MostrarReporte();
         }
     }
 }

@@ -43,6 +43,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataGridViewCitas = new System.Windows.Forms.DataGridView();
             this.buttonReporte = new System.Windows.Forms.Button();
+            this.buttonOrdenar = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageFecha.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -167,6 +168,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.buttonOrdenar);
             this.tabPage2.Controls.Add(this.buttonReporte);
             this.tabPage2.Controls.Add(this.dataGridViewCitas);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
@@ -189,13 +191,23 @@
             // 
             // buttonReporte
             // 
-            this.buttonReporte.Location = new System.Drawing.Point(352, 408);
+            this.buttonReporte.Location = new System.Drawing.Point(170, 398);
             this.buttonReporte.Name = "buttonReporte";
             this.buttonReporte.Size = new System.Drawing.Size(270, 95);
             this.buttonReporte.TabIndex = 1;
             this.buttonReporte.Text = "Generar reporte";
             this.buttonReporte.UseVisualStyleBackColor = true;
             this.buttonReporte.Click += new System.EventHandler(this.buttonReporte_Click);
+            // 
+            // buttonOrdenar
+            // 
+            this.buttonOrdenar.Location = new System.Drawing.Point(584, 398);
+            this.buttonOrdenar.Name = "buttonOrdenar";
+            this.buttonOrdenar.Size = new System.Drawing.Size(181, 93);
+            this.buttonOrdenar.TabIndex = 2;
+            this.buttonOrdenar.Text = "Ordenar por doctor";
+            this.buttonOrdenar.UseVisualStyleBackColor = true;
+            this.buttonOrdenar.Click += new System.EventHandler(this.buttonOrdenar_Click);
             // 
             // Form1
             // 
@@ -232,6 +244,7 @@
         private System.Windows.Forms.ComboBox comboBoxHora;
         private System.Windows.Forms.Button buttonReporte;
         private System.Windows.Forms.DataGridView dataGridViewCitas;
+        private System.Windows.Forms.Button buttonOrdenar;
     }
 }
 
